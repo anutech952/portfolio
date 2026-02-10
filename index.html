@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>OA.DEV | Full Stack Engineer</title>
+    <title>OA.DEV | Olukayode Anuoluwapo</title>
     <style>
         :root {
             --primary: #ffffff;
@@ -23,13 +23,7 @@
             color: var(--primary);
             font-family: var(--font-main);
             line-height: 1.6;
-        }
-
-        /* Allow scrolling only if content exceeds height (important for mobile) */
-        body {
             overflow-x: hidden;
-            display: flex;
-            flex-direction: column;
         }
 
         /* --- BACKGROUND --- */
@@ -47,8 +41,8 @@
             width: 100%;
             height: 100%;
             object-fit: cover;
-            filter: brightness(0.2) saturate(0.7);
-            transform: scale(1.05);
+            filter: brightness(0.2) saturate(0.5);
+            transform: scale(1.1);
         }
 
         /* --- NAVIGATION --- */
@@ -56,32 +50,44 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 20px 5%;
+            padding: 25px 5%;
             position: fixed;
             width: 100%;
             z-index: 100;
-            background: rgba(2, 6, 23, 0.6);
-            backdrop-filter: blur(12px);
+            background: rgba(2, 6, 23, 0.5);
+            backdrop-filter: blur(10px);
             border-bottom: 1px solid var(--border);
         }
 
-        .logo { font-size: 1.3rem; font-weight: 800; text-decoration: none; color: #fff; letter-spacing: -1px; }
+        .logo { font-size: 1.4rem; font-weight: 800; text-decoration: none; color: #fff; letter-spacing: -1px; }
         .logo span { color: var(--accent); }
         
-        .nav-menu { display: flex; gap: 20px; }
+        .nav-menu { display: flex; gap: 25px; }
         .nav-menu a { text-decoration: none; color: var(--secondary); font-size: 0.85rem; font-weight: 500; transition: 0.3s; }
         .nav-menu a:hover { color: #fff; }
+        .nav-menu a.active { color: var(--accent); font-weight: 700; }
+
+        /* --- MOBILE MENU --- */
+        .hamburger { display: none; cursor: pointer; flex-direction: column; gap: 6px; z-index: 2001; }
+        .hamburger span { width: 28px; height: 2px; background: #fff; transition: 0.4s; }
+
+        .mobile-overlay {
+            position: fixed; top: 90px; right: -100%; width: 220px; background: rgba(15, 23, 42, 0.95);
+            backdrop-filter: blur(15px); z-index: 1500; display: flex; flex-direction: column; 
+            padding: 25px; gap: 1.2rem; transition: 0.4s; border-radius: 20px; border: 1px solid var(--border);
+        }
+        .mobile-overlay.active { right: 20px; }
+        .mobile-overlay a { text-decoration: none; color: var(--secondary); font-weight: 600; border-bottom: 1px solid var(--border); padding-bottom: 8px; }
 
         /* --- HERO SECTION --- */
-        .main-container {
-            flex: 1;
+        .hero {
+            height: 100vh;
             display: flex;
             flex-direction: column;
             justify-content: center;
-            padding: 120px 8% 60px;
-            max-width: 1200px;
-            margin: 0 auto;
-            position: relative;
+            align-items: center;
+            text-align: center;
+            padding: 0 10%;
         }
 
         .status-badge {
@@ -90,14 +96,13 @@
             gap: 10px;
             background: rgba(255, 255, 255, 0.03);
             border: 1px solid var(--border);
-            padding: 8px 16px;
+            padding: 8px 20px;
             border-radius: 100px;
-            font-size: 0.7rem;
-            color: var(--secondary);
-            width: fit-content;
-            margin-bottom: 24px;
+            font-size: 0.75rem;
             text-transform: uppercase;
-            letter-spacing: 1px;
+            letter-spacing: 2px;
+            color: var(--secondary);
+            margin-bottom: 30px;
         }
 
         .pulse-dot {
@@ -110,132 +115,159 @@
         }
 
         @keyframes pulse {
-            0% { opacity: 1; }
-            50% { opacity: 0.4; }
-            100% { opacity: 1; }
+            0% { transform: scale(0.9); opacity: 1; }
+            70% { transform: scale(2); opacity: 0; }
+            100% { transform: scale(0.9); opacity: 0; }
         }
 
-        h1 {
-            font-size: clamp(2.2rem, 8vw, 4.5rem);
-            font-weight: 800;
+        .hero h1 {
+            font-size: clamp(2.5rem, 8vw, 5rem);
+            font-weight: 900;
             line-height: 1.1;
-            margin-bottom: 24px;
+            margin-bottom: 25px;
             letter-spacing: -2px;
         }
 
-        h1 span {
-            background: linear-gradient(90deg, #fff, var(--accent));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
+        .hero h1 span { color: var(--accent); }
 
-        .hero-description {
-            max-width: 600px;
-            font-size: clamp(1rem, 2vw, 1.25rem);
+        .hero p {
+            max-width: 650px;
+            font-size: 1.2rem;
             color: var(--secondary);
             margin-bottom: 40px;
         }
 
         .cta-group {
             display: flex;
-            gap: 16px;
+            gap: 20px;
         }
 
         .btn {
-            padding: 16px 32px;
+            padding: 18px 40px;
             border-radius: 12px;
             font-weight: 700;
             text-decoration: none;
             transition: 0.3s;
-            font-size: 0.95rem;
-            text-align: center;
+            font-size: 0.9rem;
         }
 
-        .btn-primary { background: var(--accent); color: #000; }
-        .btn-primary:hover { transform: translateY(-3px); box-shadow: 0 10px 20px rgba(0, 210, 255, 0.3); }
-        
-        .btn-outline { border: 1px solid var(--border); color: #fff; background: rgba(255,255,255,0.02); }
-        .btn-outline:hover { background: rgba(255,255,255,0.05); border-color: var(--secondary); }
+        .btn-primary {
+            background: var(--accent);
+            color: #000;
+        }
 
+        .btn-primary:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0, 210, 255, 0.3);
+        }
+
+        .btn-outline {
+            border: 1px solid var(--border);
+            color: #fff;
+            backdrop-filter: blur(10px);
+        }
+
+        .btn-outline:hover {
+            background: rgba(255, 255, 255, 0.05);
+            border-color: var(--accent);
+        }
+
+        /* --- FOOTER --- */
         footer {
-            padding: 30px 8%;
-            border-top: 1px solid var(--border);
+            position: absolute;
+            bottom: 40px;
+            width: 100%;
             display: flex;
             justify-content: space-between;
+            padding: 0 8%;
             font-size: 0.7rem;
             color: var(--secondary);
             text-transform: uppercase;
             letter-spacing: 1px;
-            background: rgba(2, 6, 23, 0.3);
         }
 
-        /* --- MOBILE RESPONSIVE TWEAKS --- */
-        @media (max-width: 768px) {
-            nav { padding: 15px 5%; }
-            .nav-menu { gap: 12px; }
-            .nav-menu a { font-size: 0.75rem; }
-            
-            .main-container { 
-                padding-top: 140px; 
-                text-align: center; 
-                align-items: center;
-            }
-
-            .hero-description { margin-left: auto; margin-right: auto; }
-
-            .cta-group {
-                flex-direction: column;
-                width: 100%;
-                max-width: 300px;
-            }
-
-            footer {
-                flex-direction: column;
-                align-items: center;
-                gap: 15px;
-                text-align: center;
-            }
+        @media (max-width: 850px) {
+            .nav-menu { display: none; }
+            .hamburger { display: flex; }
+            .hero h1 { font-size: 3rem; }
+            .cta-group { flex-direction: column; width: 100%; max-width: 300px; }
+            .btn { width: 100%; text-align: center; }
+            footer { flex-direction: column; gap: 10px; text-align: center; bottom: 20px; }
         }
     </style>
 </head>
 <body>
 
     <div class="background-visuals">
-        <img src="code1.jpg" class="bg-image" alt="Background Engineering Workspace">
+        <img src="code1.jpg" class="bg-image" alt="Tech Background">
     </div>
 
     <nav>
-        <a href="index.html" class="logo">OA <span>.DEV</span></a>
+        <a href="index.html" class="logo">OA<span>.DEV</span></a>
         <div class="nav-menu">
-            <a href="index.html">Home</a>
+            <a href="index.html" class="active">Home</a>
             <a href="projects.html">Projects</a>
             <a href="about.html">About</a>
             <a href="contact.html">Contact</a>
         </div>
+        <div class="hamburger" id="hamburger"><span></span><span></span><span></span></div>
     </nav>
 
-    <main class="main-container">
+    <div class="mobile-overlay" id="mobileOverlay">
+        <a href="index.html" class="active">Home</a>
+        <a href="projects.html">Projects</a>
+        <a href="about.html">About</a>
+        <a href="contact.html">Contact</a>
+    </div>
+
+    <main class="hero">
         <div class="status-badge">
             <div class="pulse-dot"></div>
-            System Online // Available
+            Bowen University // B.Sc Comp Sci
         </div>
         
-        <h1>Engineering <span>Scalable</span> <br>Full Stack Solutions.</h1>
+        <h1>Engineering <span>Scalable</span><br>Logic & Design.</h1>
         
-        <p class="hero-description">
-            Transforming complex logic into elegant digital experiences. Specialist in high-performance applications and automation.
+        <p>
+            Computer Science student and Full Stack Developer focused on building high-performance applications and clean, automated solutions.
         </p>
 
         <div class="cta-group">
-            <a href="projects.html" class="btn btn-primary">Review Work</a>
-            <a href="contact.html" class="btn btn-outline">Start Conversation</a>
+            <a href="projects.html" class="btn btn-primary">View Portfolio</a>
+            <a href="contact.html" class="btn btn-outline">Let's Talk</a>
         </div>
     </main>
 
     <footer>
         <div>© 2026 Olukayode Anuoluwapo</div>
-        <div style="color: var(--accent)">Portfolio v2.0 // Node.js // Python</div>
+        <div style="color: var(--accent)">Available for Internships & Projects</div>
     </footer>
 
+    <script>
+        const hamburger = document.getElementById('hamburger');
+        const mobileOverlay = document.getElementById('mobileOverlay');
+
+        hamburger.addEventListener('click', (e) => {
+            e.stopPropagation();
+            mobileOverlay.classList.toggle('active');
+            const spans = hamburger.querySelectorAll('span');
+            if(mobileOverlay.classList.contains('active')) {
+                spans[0].style.transform = 'rotate(45deg) translate(5px, 6px)';
+                spans[1].style.opacity = '0';
+                spans[2].style.transform = 'rotate(-45deg) translate(5px, -6px)';
+            } else {
+                spans[0].style.transform = 'none';
+                spans[1].style.opacity = '1';
+                spans[2].style.transform = 'none';
+            }
+        });
+
+        window.addEventListener('click', () => {
+            mobileOverlay.classList.remove('active');
+            const spans = hamburger.querySelectorAll('span');
+            spans.forEach(s => s.style.transform = 'none');
+            spans[1].style.opacity = '1';
+        });
+    </script>
 </body>
 </html>
