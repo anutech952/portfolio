@@ -44,7 +44,7 @@
             transform: scale(1.05);
         }
 
-        /* --- NAVIGATION (Synced with Index/About) --- */
+        /* --- NAVIGATION --- */
         nav {
             display: flex;
             justify-content: space-between;
@@ -64,6 +64,52 @@
         .nav-menu a { text-decoration: none; color: var(--secondary); font-size: 0.85rem; font-weight: 500; transition: 0.3s; }
         .nav-menu a:hover { color: #fff; }
         .nav-menu a.active { color: var(--accent); font-weight: 700; }
+
+        /* --- HAMBURGER MENU STYLE --- */
+        .hamburger { 
+            display: none; 
+            cursor: pointer; 
+            flex-direction: column; 
+            gap: 6px; 
+            z-index: 2001; 
+        }
+        .hamburger span { 
+            width: 28px; 
+            height: 2px; 
+            background: #fff; 
+            transition: 0.4s; 
+        }
+
+        .mobile-overlay {
+            position: fixed; 
+            top: 90px; 
+            right: -100%; 
+            width: 220px; 
+            background: rgba(15, 23, 42, 0.95);
+            backdrop-filter: blur(15px); 
+            z-index: 1500;
+            display: flex; 
+            flex-direction: column; 
+            padding: 25px; 
+            gap: 1.2rem;
+            transition: 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            border-radius: 20px; 
+            box-shadow: -10px 10px 30px rgba(0,0,0,0.5);
+            border: 1px solid var(--border);
+        }
+
+        .mobile-overlay.active { right: 20px; }
+        .mobile-overlay a { 
+            text-decoration: none; 
+            color: var(--secondary); 
+            font-weight: 600; 
+            font-size: 1rem; 
+            padding-bottom: 8px; 
+            border-bottom: 1px solid var(--border); 
+            transition: 0.3s;
+        }
+        .mobile-overlay a:hover { color: var(--accent); }
+        .mobile-overlay a:last-child { border: none; }
 
         /* --- MAIN CONTENT --- */
         .main-container {
@@ -116,7 +162,6 @@
         .card h3 { font-size: 1.5rem; margin-bottom: 15px; color: #fff; }
         .card p { color: var(--secondary); font-size: 0.95rem; margin-bottom: 25px; flex-grow: 1; }
 
-        /* --- PROJECT LINKS --- */
         .project-links {
             display: flex;
             gap: 15px;
@@ -130,13 +175,11 @@
             font-weight: 700;
             color: #fff;
             transition: 0.3s;
-            display: flex;
-            align-items: center;
         }
 
         .project-links a:hover { color: var(--accent); }
 
-        /* --- FOOTER (Synced with Index/About) --- */
+        /* --- FOOTER --- */
         footer {
             width: 100%;
             display: flex;
@@ -150,8 +193,13 @@
             border-top: 1px solid var(--border);
         }
 
-        @media (max-width: 768px) {
-            .main-container { padding-top: 100px; }
+        @media (max-width: 850px) {
+            .nav-menu { display: none; }
+            .hamburger { display: flex; }
+            .main-container { padding-top: 120px; }
+            .project-grid { grid-template-columns: 1fr; }
+            header { text-align: center; }
+            header p { margin: 0 auto; }
             footer { flex-direction: column; gap: 15px; text-align: center; }
         }
     </style>
@@ -159,7 +207,7 @@
 <body>
 
     <div class="background-visuals">
-        <img src="code1.jpg" class="bg-image" alt="Background Engineering">
+        <img src="code1.jpg" class="bg-image" alt="Background">
     </div>
 
     <nav>
@@ -170,7 +218,19 @@
             <a href="about.html">About</a>
             <a href="contact.html">Contact</a>
         </div>
+        <div class="hamburger" id="hamburger">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
     </nav>
+
+    <div class="mobile-overlay" id="mobileOverlay">
+        <a href="index.html">Home</a>
+        <a href="projects.html" class="active">Projects</a>
+        <a href="about.html">About</a>
+        <a href="contact.html">Contact</a>
+    </div>
 
     <main class="main-container">
         <header>
@@ -184,10 +244,10 @@
                     <span class="tech-pill">HTML</span><span class="tech-pill">CSS</span><span class="tech-pill">JS</span>
                 </div>
                 <h3>Debbie's Beauties</h3>
-                <p>An elegant beauty and lifestyle platform showcasing responsive design and refined aesthetic interfaces.</p>
+                <p>An elegant beauty and lifestyle platform showcasing responsive design.</p>
                 <div class="project-links">
-                    <a href="https://nextunitco.github.io/Debbie/">Live Demo</a>
-                    <a href="https://github.com/nextunitco/Debbie.git">GitHub</a>
+                    <a href="https://anuoluwa1234.github.io/debbies-beauty-website-/">Live Demo</a>
+                    <a href="https://github.com/anuoluwa1234/debbies-beauty-website-.git">Source</a>
                 </div>
             </div>
 
@@ -196,10 +256,10 @@
                     <span class="tech-pill">HTML</span><span class="tech-pill">CSS</span><span class="tech-pill">JS</span>
                 </div>
                 <h3>Sycarmore Health</h3>
-                <p>A professional healthcare service website designed for clarity, accessibility, and client trust.</p>
+                <p>Professional healthcare service website designed for clarity and trust.</p>
                 <div class="project-links">
-                    <a href="https://anuoluwa1234.github.io/sycamore-health/">Live Demo</a>
-                    <a href="https://github.com/anuoluwa1234/sycamore-health.git">GitHub</a>
+                    <a href="https://anuoluwa1234.github.io/sycarmore-home-health-care-service-website/">Live Demo</a>
+                    <a href="https://github.com/anuoluwa1234/sycarmore-home-health-care-service-website.git">Source</a>
                 </div>
             </div>
 
@@ -208,7 +268,7 @@
                     <span class="tech-pill">HTML</span><span class="tech-pill">CSS</span><span class="tech-pill">JS</span>
                 </div>
                 <h3>Jay Graphics</h3>
-                <p>Creative portfolio for graphic design services, featuring dynamic layouts and visual-heavy galleries.</p>
+                <p>Creative portfolio for graphic design services with dynamic layouts.</p>
                 <div class="project-links">
                     <a href="https://anuoluwa1234.github.io/Jay-graphics/">View Site</a>
                     <a href="https://github.com/anuoluwa1234/Jay-graphics.git">Source</a>
@@ -220,7 +280,7 @@
                     <span class="tech-pill">HTML</span><span class="tech-pill">CSS</span><span class="tech-pill">JS</span>
                 </div>
                 <h3>Charity Portal</h3>
-                <p>A dedicated platform for social impact, enabling community engagement and donor management.</p>
+                <p>A platform for social impact, enabling community engagement.</p>
                 <div class="project-links">
                     <a href="https://anuoluwa1234.github.io/charity-website/">Explore</a>
                     <a href="https://github.com/anuoluwa1234/charity-website.git">Repo</a>
@@ -234,5 +294,33 @@
         </footer>
     </main>
 
+    <script>
+        const hamburger = document.getElementById('hamburger');
+        const mobileOverlay = document.getElementById('mobileOverlay');
+
+        hamburger.addEventListener('click', (e) => {
+            e.stopPropagation();
+            mobileOverlay.classList.toggle('active');
+            
+            const spans = hamburger.querySelectorAll('span');
+            if(mobileOverlay.classList.contains('active')) {
+                spans[0].style.transform = 'rotate(45deg) translate(5px, 6px)';
+                spans[1].style.opacity = '0';
+                spans[2].style.transform = 'rotate(-45deg) translate(5px, -6px)';
+            } else {
+                spans[0].style.transform = 'none';
+                spans[1].style.opacity = '1';
+                spans[2].style.transform = 'none';
+            }
+        });
+
+        window.addEventListener('click', () => {
+            mobileOverlay.classList.remove('active');
+            const spans = hamburger.querySelectorAll('span');
+            spans[0].style.transform = 'none';
+            spans[1].style.opacity = '1';
+            spans[2].style.transform = 'none';
+        });
+    </script>
 </body>
 </html>

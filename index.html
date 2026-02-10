@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>A.O DEV | Full Stack Engineer</title>
+    <title>OA.DEV | Full Stack Engineer</title>
     <style>
         :root {
             --primary: #ffffff;
@@ -18,15 +18,21 @@
         * { box-sizing: border-box; margin: 0; padding: 0; }
 
         body, html {
-            height: 100%;
+            min-height: 100%;
             background-color: var(--bg-deep);
             color: var(--primary);
             font-family: var(--font-main);
-            overflow: hidden;
             line-height: 1.6;
         }
 
-        /* --- STATIC BACKGROUND IMAGE --- */
+        /* Allow scrolling only if content exceeds height (important for mobile) */
+        body {
+            overflow-x: hidden;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* --- BACKGROUND --- */
         .background-visuals {
             position: fixed;
             inset: 0;
@@ -41,17 +47,8 @@
             width: 100%;
             height: 100%;
             object-fit: cover;
-            /* Adjust brightness here to make text pop */
-            filter: brightness(0.25) saturate(0.7);
-            transform: scale(1.05); /* Slight zoom for cinematic feel */
-        }
-
-        /* Overlay to add depth */
-        .background-visuals::after {
-            content: "";
-            position: absolute;
-            inset: 0;
-            background: radial-gradient(circle at center, transparent 0%, var(--bg-deep) 100%);
+            filter: brightness(0.2) saturate(0.7);
+            transform: scale(1.05);
         }
 
         /* --- NAVIGATION --- */
@@ -59,81 +56,71 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 25px 5%;
-            position: absolute;
+            padding: 20px 5%;
+            position: fixed;
             width: 100%;
             z-index: 100;
+            background: rgba(2, 6, 23, 0.6);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--border);
         }
 
-        .logo {
-            font-size: 1.4rem;
-            font-weight: 800;
-            text-decoration: none;
-            color: #fff;
-            letter-spacing: -1px;
-        }
-
+        .logo { font-size: 1.3rem; font-weight: 800; text-decoration: none; color: #fff; letter-spacing: -1px; }
         .logo span { color: var(--accent); }
-
+        
         .nav-menu { display: flex; gap: 20px; }
-
-        .nav-menu a {
-            text-decoration: none;
-            color: var(--secondary);
-            font-size: 0.85rem;
-            font-weight: 500;
-            transition: 0.3s;
-        }
-
-        .nav-menu a:hover, .nav-menu a.active { color: #fff; }
+        .nav-menu a { text-decoration: none; color: var(--secondary); font-size: 0.85rem; font-weight: 500; transition: 0.3s; }
+        .nav-menu a:hover { color: #fff; }
 
         /* --- HERO SECTION --- */
         .main-container {
-            height: 100vh;
+            flex: 1;
             display: flex;
             flex-direction: column;
             justify-content: center;
-            padding: 0 8%;
-            max-width: 1400px;
+            padding: 120px 8% 60px;
+            max-width: 1200px;
             margin: 0 auto;
             position: relative;
-            z-index: 10;
         }
 
         .status-badge {
             display: inline-flex;
             align-items: center;
             gap: 10px;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid var(--border);
             padding: 8px 16px;
-            background: rgba(0, 210, 255, 0.05);
-            border: 1px solid rgba(0, 210, 255, 0.2);
             border-radius: 100px;
+            font-size: 0.7rem;
+            color: var(--secondary);
             width: fit-content;
-            margin-bottom: 25px;
-            font-size: 0.65rem;
-            font-weight: 700;
+            margin-bottom: 24px;
             text-transform: uppercase;
-            letter-spacing: 1.5px;
-            color: var(--accent);
+            letter-spacing: 1px;
         }
 
         .pulse-dot {
-            width: 6px;
-            height: 6px;
-            background: var(--accent);
+            width: 8px;
+            height: 8px;
+            background: #22c55e;
             border-radius: 50%;
-            box-shadow: 0 0 10px var(--accent);
+            box-shadow: 0 0 10px #22c55e;
             animation: pulse 2s infinite;
         }
 
-        @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.3; } }
+        @keyframes pulse {
+            0% { opacity: 1; }
+            50% { opacity: 0.4; }
+            100% { opacity: 1; }
+        }
 
         h1 {
-            font-size: clamp(2.2rem, 8vw, 5rem);
+            font-size: clamp(2.2rem, 8vw, 4.5rem);
             font-weight: 800;
             line-height: 1.1;
-            letter-spacing: -1.5px;
-            margin-bottom: 20px;
+            margin-bottom: 24px;
+            letter-spacing: -2px;
         }
 
         h1 span {
@@ -143,50 +130,71 @@
         }
 
         .hero-description {
-            font-size: clamp(1rem, 4vw, 1.25rem);
+            max-width: 600px;
+            font-size: clamp(1rem, 2vw, 1.25rem);
             color: var(--secondary);
-            max-width: 650px;
             margin-bottom: 40px;
         }
 
-        .cta-group { 
-            display: flex; 
-            gap: 15px; 
+        .cta-group {
+            display: flex;
+            gap: 16px;
         }
 
         .btn {
             padding: 16px 32px;
-            border-radius: 10px;
-            font-size: 0.95rem;
-            font-weight: 600;
+            border-radius: 12px;
+            font-weight: 700;
             text-decoration: none;
-            transition: 0.4s;
+            transition: 0.3s;
+            font-size: 0.95rem;
             text-align: center;
         }
 
-        .btn-primary { background: #fff; color: #000; }
-        .btn-outline { 
-            border: 1px solid var(--border); 
-            color: #fff; 
-            background: var(--glass); 
-            backdrop-filter: blur(10px); 
-        }
+        .btn-primary { background: var(--accent); color: #000; }
+        .btn-primary:hover { transform: translateY(-3px); box-shadow: 0 10px 20px rgba(0, 210, 255, 0.3); }
+        
+        .btn-outline { border: 1px solid var(--border); color: #fff; background: rgba(255,255,255,0.02); }
+        .btn-outline:hover { background: rgba(255,255,255,0.05); border-color: var(--secondary); }
 
         footer {
-            position: absolute;
-            bottom: 30px;
-            width: 84%;
+            padding: 30px 8%;
+            border-top: 1px solid var(--border);
             display: flex;
             justify-content: space-between;
             font-size: 0.7rem;
             color: var(--secondary);
             text-transform: uppercase;
-            letter-spacing: 0.5px;
+            letter-spacing: 1px;
+            background: rgba(2, 6, 23, 0.3);
         }
 
+        /* --- MOBILE RESPONSIVE TWEAKS --- */
         @media (max-width: 768px) {
-            .cta-group { flex-direction: column; }
-            footer { flex-direction: column; gap: 10px; text-align: center; width: 90%; }
+            nav { padding: 15px 5%; }
+            .nav-menu { gap: 12px; }
+            .nav-menu a { font-size: 0.75rem; }
+            
+            .main-container { 
+                padding-top: 140px; 
+                text-align: center; 
+                align-items: center;
+            }
+
+            .hero-description { margin-left: auto; margin-right: auto; }
+
+            .cta-group {
+                flex-direction: column;
+                width: 100%;
+                max-width: 300px;
+            }
+
+            footer {
+                flex-direction: column;
+                align-items: center;
+                gap: 15px;
+                text-align: center;
+            }
         }
     </style>
 </head>
@@ -197,11 +205,12 @@
     </div>
 
     <nav>
-        <a href="index.html" class="logo">A.O <span>DEV</span></a>
+        <a href="index.html" class="logo">OA <span>.DEV</span></a>
         <div class="nav-menu">
-    <a href="index.html">Home</a>
-    <a href="projects.html">Projects</a>
-    <a href="about.html">About</a> <a href="contact.html">Contact</a>
+            <a href="index.html">Home</a>
+            <a href="projects.html">Projects</a>
+            <a href="about.html">About</a>
+            <a href="contact.html">Contact</a>
         </div>
     </nav>
 
@@ -221,12 +230,12 @@
             <a href="projects.html" class="btn btn-primary">Review Work</a>
             <a href="contact.html" class="btn btn-outline">Start Conversation</a>
         </div>
-
-        <footer>
-            <div>© 2026 Olukayode Anuoluwapo</div>
-            <div style="color: var(--accent)">Portfolio v2.0 // Node.js // Python</div>
-        </footer>
     </main>
+
+    <footer>
+        <div>© 2026 Olukayode Anuoluwapo</div>
+        <div style="color: var(--accent)">Portfolio v2.0 // Node.js // Python</div>
+    </footer>
 
 </body>
 </html>
