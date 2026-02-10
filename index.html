@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>A.O DEV | Full Stack Engineer</title>
+    <style>
+        :root {
+            --primary: #ffffff;
+            --secondary: #94a3b8;
+            --accent: #00d2ff;
+            --bg-deep: #020617;
+            --glass: rgba(15, 23, 42, 0.7);
+            --border: rgba(255, 255, 255, 0.08);
+            --font-main: 'Inter', -apple-system, system-ui, sans-serif;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+
+        body, html {
+            height: 100%;
+            background-color: var(--bg-deep);
+            color: var(--primary);
+            font-family: var(--font-main);
+            overflow: hidden;
+            line-height: 1.6;
+        }
+
+        /* --- STATIC BACKGROUND IMAGE --- */
+        .background-visuals {
+            position: fixed;
+            inset: 0;
+            z-index: -1;
+            overflow: hidden;
+            background: #000; 
+        }
+
+        .bg-image {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            /* Adjust brightness here to make text pop */
+            filter: brightness(0.25) saturate(0.7);
+            transform: scale(1.05); /* Slight zoom for cinematic feel */
+        }
+
+        /* Overlay to add depth */
+        .background-visuals::after {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(circle at center, transparent 0%, var(--bg-deep) 100%);
+        }
+
+        /* --- NAVIGATION --- */
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 25px 5%;
+            position: absolute;
+            width: 100%;
+            z-index: 100;
+        }
+
+        .logo {
+            font-size: 1.4rem;
+            font-weight: 800;
+            text-decoration: none;
+            color: #fff;
+            letter-spacing: -1px;
+        }
+
+        .logo span { color: var(--accent); }
+
+        .nav-menu { display: flex; gap: 20px; }
+
+        .nav-menu a {
+            text-decoration: none;
+            color: var(--secondary);
+            font-size: 0.85rem;
+            font-weight: 500;
+            transition: 0.3s;
+        }
+
+        .nav-menu a:hover, .nav-menu a.active { color: #fff; }
+
+        /* --- HERO SECTION --- */
+        .main-container {
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding: 0 8%;
+            max-width: 1400px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 10;
+        }
+
+        .status-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 8px 16px;
+            background: rgba(0, 210, 255, 0.05);
+            border: 1px solid rgba(0, 210, 255, 0.2);
+            border-radius: 100px;
+            width: fit-content;
+            margin-bottom: 25px;
+            font-size: 0.65rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            color: var(--accent);
+        }
+
+        .pulse-dot {
+            width: 6px;
+            height: 6px;
+            background: var(--accent);
+            border-radius: 50%;
+            box-shadow: 0 0 10px var(--accent);
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.3; } }
+
+        h1 {
+            font-size: clamp(2.2rem, 8vw, 5rem);
+            font-weight: 800;
+            line-height: 1.1;
+            letter-spacing: -1.5px;
+            margin-bottom: 20px;
+        }
+
+        h1 span {
+            background: linear-gradient(90deg, #fff, var(--accent));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hero-description {
+            font-size: clamp(1rem, 4vw, 1.25rem);
+            color: var(--secondary);
+            max-width: 650px;
+            margin-bottom: 40px;
+        }
+
+        .cta-group { 
+            display: flex; 
+            gap: 15px; 
+        }
+
+        .btn {
+            padding: 16px 32px;
+            border-radius: 10px;
+            font-size: 0.95rem;
+            font-weight: 600;
+            text-decoration: none;
+            transition: 0.4s;
+            text-align: center;
+        }
+
+        .btn-primary { background: #fff; color: #000; }
+        .btn-outline { 
+            border: 1px solid var(--border); 
+            color: #fff; 
+            background: var(--glass); 
+            backdrop-filter: blur(10px); 
+        }
+
+        footer {
+            position: absolute;
+            bottom: 30px;
+            width: 84%;
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.7rem;
+            color: var(--secondary);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        @media (max-width: 768px) {
+            .cta-group { flex-direction: column; }
+            footer { flex-direction: column; gap: 10px; text-align: center; width: 90%; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="background-visuals">
+        <img src="code1.jpg" class="bg-image" alt="Background Engineering Workspace">
+    </div>
+
+    <nav>
+        <a href="index.html" class="logo">A.O <span>DEV</span></a>
+        <div class="nav-menu">
+    <a href="index.html">Home</a>
+    <a href="projects.html">Projects</a>
+    <a href="about.html">About</a> <a href="contact.html">Contact</a>
+        </div>
+    </nav>
+
+    <main class="main-container">
+        <div class="status-badge">
+            <div class="pulse-dot"></div>
+            System Online // Available
+        </div>
+        
+        <h1>Engineering <span>Scalable</span> <br>Full Stack Solutions.</h1>
+        
+        <p class="hero-description">
+            Transforming complex logic into elegant digital experiences. Specialist in high-performance applications and automation.
+        </p>
+
+        <div class="cta-group">
+            <a href="projects.html" class="btn btn-primary">Review Work</a>
+            <a href="contact.html" class="btn btn-outline">Start Conversation</a>
+        </div>
+
+        <footer>
+            <div>© 2026 Olukayode Anuoluwapo</div>
+            <div style="color: var(--accent)">Portfolio v2.0 // Node.js // Python</div>
+        </footer>
+    </main>
+
+</body>
+</html>

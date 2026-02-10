@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact | Olukayode</title>
+    <style>
+        :root { --bg: #05070a; --accent: #00d2ff; --glass: rgba(255, 255, 255, 0.05); }
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body { background: var(--bg); color: #fff; font-family: sans-serif; height: 100vh; display: flex; flex-direction: column; }
+        .container { max-width: 600px; margin: auto; padding: 0 20px; width: 100%; }
+        
+        nav { display: flex; justify-content: space-between; padding: 25px 5%; width: 100%; position: absolute; top: 0; }
+        .logo { font-size: 1.5rem; font-weight: bold; color: var(--accent); text-decoration: none; }
+        .links a { margin-left: 20px; text-decoration: none; color: #fff; opacity: 0.7; }
+
+        .contact-card {
+            background: var(--glass); border: 1px solid rgba(255,255,255,0.1); padding: 50px; border-radius: 24px; backdrop-filter: blur(15px); text-align: center;
+        }
+        h1 { font-size: 2.5rem; margin-bottom: 10px; }
+        .info-item { margin: 25px 0; font-size: 1.1rem; color: var(--accent); }
+        
+        input, textarea {
+            width: 100%; padding: 15px; margin-top: 15px; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); color: #fff; border-radius: 10px;
+        }
+        .btn-send {
+            width: 100%; padding: 15px; margin-top: 20px; background: var(--accent); color: #000; border: none; border-radius: 10px; font-weight: bold; cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <a href="index.html" class="logo">OA.DEV</a>
+        <div class="links">
+            <a href="index.html">Home</a>
+            <a href="projects.html">Projects</a>
+            <a href="contact.html" style="color:var(--accent)">Contact</a>
+        </div>
+    </nav>
+
+    <div class="container">
+        <div class="contact-card">
+            <h1>Let's <span style="color:var(--accent)">Connect</span></h1>
+            <p>Ready to bring your ideas to life?</p>
+            
+            <div class="info-item">
+                <p>📧 olukayodeanuoluwapo19@gmail.com</p>
+                <p>📞 09013254507</p>
+            </div>
+
+            <form id="contactForm">
+                <input type="text" placeholder="Your Name" required>
+                <textarea placeholder="How can I help you?" rows="4"></textarea>
+                <button type="submit" class="btn-send">Send Message</button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('contactForm').onsubmit = (e) => {
+            e.preventDefault();
+            alert("Success! Your message has been sent to Olukayode.");
+        };
+    </script>
+</body>
+</html>
